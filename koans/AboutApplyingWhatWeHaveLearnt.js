@@ -92,6 +92,7 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   it("should count the ingredient occurrence (functional)", function () {
+
     var ingredientCount =
    _.chain(products).map(function(product){return product.ingredients}).flatten()
                   .reduce(function(memo, ingredient){
@@ -103,7 +104,7 @@ describe("About Applying What We Have Learnt", function() {
                           return memo;
                         }, {})
                   .value();
-      });
+
 
 
     expect(ingredientCount['mushrooms']).toBe(2);
