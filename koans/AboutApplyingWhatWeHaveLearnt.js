@@ -92,18 +92,19 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   it("should count the ingredient occurrence (functional)", function () {
-    var ingredientCount = { "{ingredient name}": 0 };
-
-    /* chain() together map(), flatten() and reduce() */
-   _.chain(products).map(function(product){return product.ingredients}).flatten().forEach(function(ingredient) {
-        ingredientCount[ingredient] = (ingredientCount[ingredient] || 0) + 1;
+    var ingredientCount =
+   _.chain(products).map(function(product){return product.ingredients}).flatten()
+                  .reduce(function(memo, ingredient){
+                          if (memo[ingredient]){
+                            memo[ingredient] += 1;
+                          }else {
+                            memo[ingredient] = 1;
+                          }
+                          return memo;
+                        }, {})
+                  .value();
       });
 
-    // function isMush(ingredient){
-    //   if (ingredient === "mushrooms") {
-    //     ingredientCount['mushrooms'] += 1;
-    //   }
-    // };
 
     expect(ingredientCount['mushrooms']).toBe(2);
   });
@@ -113,7 +114,7 @@ describe("About Applying What We Have Learnt", function() {
 
   it("should find the largest prime factor of a composite number", function () {
 
-    
+
 
   });
 
